@@ -1,0 +1,54 @@
+AppBundle\Entity\Recipe:
+    type: entity
+    table: recipe
+
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO   
+        title:
+            type: string
+            length: 255
+        ingredients:
+            type: string
+            length: 255
+        directions:
+            type: string
+            length: 255
+        image:
+            type: string
+            length: 255
+        rate:
+            type: integer
+        isPublic:
+            type: boolean
+            column: is_public
+        createdAt:
+            type: datetime
+            column: created_at
+            gedmo:
+                timestampable:
+                  on: create
+        updatedAt:
+            type: datetime
+            column: updated_at
+            gedmo:
+                timestampable:
+                  on: update
+                  
+                  
+    manyToOne:
+        user:
+            targetEntity: AppBundle\Entity\User
+            joinColumns:
+                user:
+                    referencedColumnName: id
+                    onDelete: SET NULL     
+        category:
+            targetEntity: AppBundle\Entity\Category
+            joinColumns:
+                category:
+                    referencedColumnName: id
+                    onDelete: SET NULL     

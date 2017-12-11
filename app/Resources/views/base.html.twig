@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" /> 
+    <link rel="stylesheet" type="text/css" media="screen" href="/startbootstrap-2-col-portfolio-gh-pages/css/2-col-portfolio.css" /> 
+    <link rel="stylesheet" type="text/css" media="screen" href="/jquery/jqgrid/css/ui.jqgrid-bootstrap.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/jquery/jqgrid/css/ui.jqgrid-bootstrap-ui.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/jquery/jqgrid/css/ui.jqgrid.css" />
+ 
+
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}
+    {% include 'scripts.js.twig' %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,39 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_host: 127.0.0.1
+    database_port: ~
+    database_name: symfony
+    database_user: root
+    database_password: ~
+    # You should uncomment this if you want to use pdo_sqlite
+    #database_path: "%kernel.root_dir%/data.db3"
+
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: info@info
+    mailer_password: ~
+
+    # A secret key that's used to generate certain security-related tokens
+    secret: ThisTokenIsNotSoSecretChangeIt
+jordi_llonch_deploy:
+    config:
+        project: MyProject
+        vcs: git
+        servers_parameter_file: app/config/parameters_deployer_servers.yml
+        local_repository_dir: /home/deploy/local_repository
+        clean_max_deploys: 7
+        ssh:
+            user: myuser
+            public_key_file: '/home/myuser/.ssh/id_rsa.pub'
+            private_key_file: '/home/myuser/.ssh/id_rsa'
+            private_key_file_pwd: 'mypassword'
+    zones:
+        prod_eatit:
+            deployer: eatit_deployer
+            environment: prod
+            checkout_url: 'git@github.com:myrepo/myproj.git'
+            checkout_branch: master
+            repository_dir: /var/www/production/myproj/deploy
+            production_dir: /var/www/production/myproj/code

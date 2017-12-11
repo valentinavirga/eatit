@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div style="margin-left:20px">
+        <h1>Recipes list</h1>
+        <table id="recipe-index"></table>
+        <div id="jqGridPager"></div>
+    </div>
+    {% include 'recipe/modal.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+        '@AppBundle/Resources/public/js/recipes.js'
+
+    %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+{% endblock %}

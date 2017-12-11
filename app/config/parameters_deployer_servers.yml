@@ -1,0 +1,4 @@
+prod_eatit:
+    urls:
+        - vally@eatit.servehttp.com:22
+#        - deploy@testserver2:8822

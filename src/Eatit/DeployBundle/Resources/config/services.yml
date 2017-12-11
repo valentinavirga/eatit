@@ -1,0 +1,6 @@
+services:
+    eatit_deploy.test:
+        class: Eatit\DeployBundle\Service\Deployer
+        tags: 
+        - { name: jordi_llonch_deploy, deployer: eatit_deployer }
+        

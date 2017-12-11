@@ -1,0 +1,13 @@
+AppBundle\Entity\Category:
+    type: entity
+    table: category
+
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO    
+        name:
+            type: string
+            length: 255     

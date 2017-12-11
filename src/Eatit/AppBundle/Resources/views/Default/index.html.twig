@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+
+        <!-- Page Heading -->
+        <h1 class="my-4"> 
+            Recipe<small>List</small>
+        </h1>
+
+       
+        {% for recipe in recipes %}
+            {% if loop.index is even %} <div class="row">{% endif %}
+            <div class="col-lg-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://placehold.it/400x400" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">{{ recipe.title }}</a>
+                        </h4>
+                        <p class="card-text">{{ recipe.category.name }}</p>
+                        <p class="card-text">{{ recipe.ingredients }}</p>
+                        <p class="card-text">{{ recipe.directions }}</p>
+                    </div>
+                </div>
+            </div>
+            {% if loop.index is even %} </div>{% endif %}
+            {% endfor %}
+        </div>
+    </div>
+  
+</div>
+
+<a href="{{ path('recipe_new') }}"> Nuova Ricetta</a>
+{% endblock %}
