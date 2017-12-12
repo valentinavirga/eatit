@@ -11,13 +11,13 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 use AppBundle\Entity\Category;
 use AppBundle\Entity\User;
-/*
+/**
  * @ORM\Entity
  * @Vich\Uploadable
-*/
+**/
 class Recipe
 {
-
+    
     protected $id;
     protected $user;
     protected $category;

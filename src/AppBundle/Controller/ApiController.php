@@ -47,14 +47,14 @@ class ApiController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $recipeData = $request->request->get('appbundle_recipe');
-        var_dump($request->request);
+
         $user = $em->getRepository('AppBundle:User')->find($recipeData['user']);
         $category = $em->getRepository('AppBundle:Category')->find($recipeData['category']);
 
         $recipe = $em->getRepository('AppBundle:Recipe')->find($recipeData['id']);
-        
-        if (count($recipe) == 0){
-            $recipe =  new Recipe;
+
+        if (count($recipe) == 0) {
+            $recipe = new Recipe;
             $recipe->setCreatedAt(new \DateTime());
         }
         $recipe->setUpdatedAt(new \DateTime());
@@ -66,15 +66,26 @@ class ApiController extends Controller
         $recipe->setUser($user);
         $recipe->setCategory($category);
         $isPublic = false;
-        if (array_key_exists('isPublic', $recipeData)){
+        if (array_key_exists('isPublic', $recipeData)) {
             $isPublic = $recipeData['isPublic'];
-            
         }
         $recipe->setIsPublic($isPublic);
-        
+        $file = $request->files->get('appbundle_recipe');
+        var_dump($file);
+        if ($file) {
+            $upload_dir = $this->getParameter('%kernel.root_dir%').'/../web/images/recipes/'. $recipeData['id'];
+            if (!dirname($upload_dir)) {
+                mkdir($upload_dir);
+            }
+            $file_name = $file->getClientOriginalName();
+            $file->move($upload_dir, $file_name);
+            $recipe->setDocument($file_name);
+
+        }
+
         $em->merge($recipe);
         $em->flush();
-                
+
         return $this->redirectToRoute('recipe_index');
     }
 
@@ -109,8 +120,8 @@ class ApiController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $em->remove($recipe);
-        $em->flush();        
-        
+        $em->flush();
+
         return $this->redirectToRoute('recipe_index');
     }
 

@@ -27,14 +27,14 @@ class RecipeType extends AbstractType
                 ->add('directions')
 //                ->add('image')
                 ->add('imageFile', FileType::class)
-                ->add('image', VichImageType::class, [
-                    'required' => false,
-                    'allow_delete' => true,
-                    'download_label' => '...',
-                    'download_uri' => true,
-                    'image_uri' => true,
-                    'imagine_pattern' => '...',
-                ])
+//                ->add('image', VichImageType::class, [
+//                    'required' => false,
+//                    'allow_delete' => true,
+//                    'download_label' => '...',
+//                    'download_uri' => true,
+//                    'image_uri' => true,
+//                    'imagine_pattern' => '...',
+//                ])
                 ->add('rate')
                 ->add('isPublic')
                 ->add('createdAt')
